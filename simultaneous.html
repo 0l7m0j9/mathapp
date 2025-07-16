@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}연립방정식 계산기{% endblock %}
+
+{% block content %}
+  <h1>연립방정식 계산기</h1>
+  <form method="post">
+    <input type="text" name="eq1" placeholder="첫 번째 식 (예: 2x+3y=7)" required autocomplete="off" /><br><br>
+    <input type="text" name="eq2" placeholder="두 번째 식 (예: x-y=1)" required autocomplete="off" />
+    <button type="submit" style="margin-top:20px;">계산</button>
+  </form>
+  {% if result %}
+    <p class="result">결과: {{ result }}</p>
+  {% endif %}
+  <a href="/" class="fade-link back-link">← 메인으로 돌아가기</a>
+{% endblock %}
+  

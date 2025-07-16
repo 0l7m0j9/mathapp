@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}방정식 계산기 - 메인{% endblock %}
+
+{% block content %}
+  <h1>방정식 계산기</h1>
+  <form action="/linear"><button type="submit">일차방정식</button></form>
+  <form action="/inequality"><button type="submit">일차부등식</button></form>
+  <form action="/simultaneous"><button type="submit">연립방정식</button></form>
+  <form action="/quadratic"><button type="submit">이차방정식</button></form>
+{% endblock %}

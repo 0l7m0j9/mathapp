@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}이차방정식 계산기{% endblock %}
+
+{% block content %}
+  <h1>이차방정식 계산기</h1>
+  <form method="post">
+    <input type="text" name="equation" placeholder="예: x^2+3x+2=0" required autocomplete="off" />
+    <button type="submit">계산</button>
+  </form>
+  {% if result %}
+    <p class="result">결과: {{ result }}</p>
+  {% endif %}
+  <a href="/" class="fade-link back-link">← 메인으로 돌아가기</a>
+{% endblock %}

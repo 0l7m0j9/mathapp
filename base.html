@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>{% block title %}방정식 계산기{% endblock %}</title>
+  <style>
+    /* Reset */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #fff;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* 컨테이너 */
+    .container {
+      max-width: 400px;
+      margin: 60px auto;
+      background: #f9f9f9;
+      padding: 40px 35px;
+      border-radius: 14px;
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+      text-align: center;
+
+      /* 페이드 인/아웃 트랜지션 */
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* 제목 */
+    h1 {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #222;
+      font-size: 1.8rem;
+      user-select: none;
+    }
+
+    /* 인풋 */
+    input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      font-size: 1.1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      transition: border-color 0.3s ease;
+    }
+    input[type="text"]:focus {
+      border-color: #222;
+      outline: none;
+    }
+
+    /* 버튼 */
+    button {
+      width: 100%;
+      padding: 14px;
+      background-color: #222;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      user-select: none;
+      margin-bottom: 15px; /* 버튼 사이 간격 */
+    }
+    button:hover {
+      background-color: #444;
+    }
+
+    /* 결과 */
+    p.result {
+      margin-top: 18px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      min-height: 30px;
+      user-select: text;
+    }
+
+    /* 뒤로가기 링크 */
+    a.back-link {
+      display: inline-block;
+      margin-top: 30px;
+      color: #222;
+      text-decoration: none;
+      font-weight: 600;
+      user-select: none;
+      transition: color 0.3s ease;
+    }
+    a.back-link:hover {
+      color: #555;
+    }
+  </style>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="container" id="main-container">
+    {% block content %}{% endblock %}
+  </div>
+
+  <script>
+    // 페이지 로드시 fade-in 효과
+    window.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('main-container');
+      container.classList.add('visible');
+    });
+
+    // 링크 클릭시 fade-out 후 이동 (부드러운 화면 전환)
+    document.addEventListener('click', e => {
+      const target = e.target;
+      if (target.tagName === 'A' && target.classList.contains('fade-link')) {
+        e.preventDefault();
+        const href = target.getAttribute('href');
+        const container = document.getElementById('main-container');
+        container.classList.remove('visible');
+        setTimeout(() => {
+          window.location.href = href;
+        }, 600); // transition duration과 맞춤
+      }
+    });
+  </script>
+</body>
+</html>
